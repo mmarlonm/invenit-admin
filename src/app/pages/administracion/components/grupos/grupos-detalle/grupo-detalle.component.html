@@ -1,0 +1,115 @@
+<ba-card cardTitle="Lista de grupos" class="modal-buttons">
+<div class="row">
+  <div class="col-md-8 col-lg-10">
+    <form #formDetalle="ngForm" (ngSubmit)="guardar()">
+      <div class="form-group row">
+        <label for="id" class="col-lg-3 col-form-label">
+          <strong>ID</strong>
+        </label>
+        <div class="col-lg-9">
+          <strong>{{ registro.id }}</strong>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="input" class="col-lg-3 col-form-label">Nombre</label>
+        <div class="col-lg-9">
+          <input type="text" class="form-control" name="nombre" required #nombre="ngModel"
+           minlength="4" placeholder="grupo" [(ngModel)]="registro.name">
+           <small class="text-danger" *ngIf="nombre.invalid && nombre.touched">
+            Ingrese un nombre de grupo válido
+          </small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="descripcion" class="col-lg-3 col-form-label">Descripción</label>
+        <div class="col-lg-9">
+          <textarea name="descripcion" class="form-control" rows="4" required
+            [(ngModel)]="registro.description"></textarea>
+           <small class="text-danger" *ngIf="nombre.invalid && nombre.touched">
+            Ingrese una descripción para este grupo
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="activo" class="col-lg-3 col-form-label">Activo</label>
+        <div class="col-lg-9">
+          <div class="form-check">
+            <input class="form-check-input position-static" type="checkbox" name="checkbox" [(ngModel)]="registro.active" aria-label="Checkbox">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="usuarioCreacion" class="col-lg-3 col-form-label">
+          Usuario creación
+        </label>
+        <div class="col-lg-9 text-secondary" *ngIf="registro.usuarioCreacion">
+          {{ registro.usuarioCreacion.username }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="propietario" class="col-lg-3 col-form-label">
+          Propietario
+        </label>
+        <div class="col-lg-9 text-secondary" *ngIf="registro.propietario">
+          {{ registro.propietario.username }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="fechaCreacion" class="col-lg-3 col-form-label">
+          Fecha de creación
+        </label>
+        <div class="col-lg-9 text-secondary">
+          {{ registro.createdAt | date:'yyyy-MM-dd H:mm:ss' }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="fechaActualizacion" class="col-lg-3 col-form-label">
+          Fecha de actualización
+        </label>
+        <div class="col-lg-9 text-secondary">
+          {{ registro.updatedAt | date:'yyyy-MM-dd H:mm:ss' }}
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-4 col-lg-2">
+    <div class="btn-group-vertical" style="width:100%">
+      <button type="submit" class="btn btn-primary" [disabled]="formDetalle.invalid || formDetalle.pristine" (click)="formDetalle.ngSubmit.emit()">
+        <i *ngIf="accion == 1" class="fa fa-plus-circle" aria-hidden="true"></i>
+        <i *ngIf="accion == 2" class="fas fa-edit" aria-hidden="true"></i>
+        <span *ngIf="accion == 1">Guardar</span>
+        <span *ngIf="accion == 2">Actualizar</span>
+      </button>
+      <button type="button" class="btn btn-secondary" routerLink="/pages/administracion/grupos">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Regresar
+      </button>
+      <button *ngIf="accion === 2" [disabled]="registro.name == 'admin'" type="button" class="btn btn-danger" (click)="eliminar(content)">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>
+<hr>
+
+<mat-tab-group *ngIf="accion === 2">
+  <mat-tab label="Permisos"><modelos [grupoId]="registro.id"></modelos></mat-tab>
+  <mat-tab label="Usuarios"><usuarios isEmbedded="true" [filtro]="filtroUsuarios"></usuarios></mat-tab>
+</mat-tab-group>
+
+
+<!--ngb-tabset >
+  <ngb-tab title="Permisos">
+    <ng-template ngbTabContent>
+      <app-modelos [grupoId]="registro.id"></app-modelos>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Usuarios">
+    <ng-template ngbTabContent>
+      <app-usuarios isEmbedded="true" [filtro]="filtroUsuarios"></app-usuarios>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset-->
+</ba-card>

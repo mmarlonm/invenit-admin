@@ -1,0 +1,159 @@
+<h5>
+  <i class="fa fa-{{icono}}" aria-hidden="true"></i>
+  {{titulo}}
+</h5>
+<hr>
+<div class="row">
+  <div class="col-md-8 col-lg-10">
+    <form #formDetalle="ngForm" (ngSubmit)="guardar()">
+      <div class="form-group row">
+        <label for="id" class="col-lg-3 col-form-label">
+          <strong>ID</strong>
+        </label>
+        <div class="col-lg-9">
+          <strong>{{ usuario.id }}</strong>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="grupo" class="col-lg-3 col-form-label">Grupo</label>
+        <div class="col-lg-9">
+          <select class="form-control" name="grupo" [(ngModel)]="selectedGroup" required>
+            <option *ngFor="let grupo of grupos" [value]="grupo.id">
+            {{grupo.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="tracker" class="col-lg-3 col-form-label">Tracker</label>
+        <div class="col-lg-9">
+          <select class="form-control" name="tracker" [(ngModel)]="selectedTracker" required>
+            <option *ngFor="let tracker of trackerData" [value]="tracker.id">
+            {{tracker.nombre}}- imei:{{tracker.imei}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="username" class="col-lg-3 col-form-label">Usuario</label>
+        <div class="col-lg-9">
+          <input type="text" class="form-control" name="username" required #username="ngModel"
+           minlength="4" placeholder="usuario" [(ngModel)]="usuario.username">
+           <small class="text-danger" *ngIf="username.invalid && username.touched">
+            Ingrese un nombre de usuario válido mayor de 4 caracteres
+          </small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-lg-3 col-form-label">Email</label>
+        <div class="col-lg-9">
+          <input type="email" class="form-control" name="email" placeholder="correo@dominio.com"
+           [(ngModel)]="usuario.email" required #email="ngModel">
+           <small class="text-danger" *ngIf="email.invalid && email.touched">
+            Ingrese un correo electrónico válido
+          </small>
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="accion === 1">
+        <label for="password" class="col-lg-3 col-form-label">Contraseña</label>
+        <div class="col-lg-9">
+          <input type="password" class="form-control" name="password" placeholder="Contraseña"
+          [(ngModel)]="usuario.password" #password="ngModel" minlength="8" required>
+          <input type="password" class="form-control" name="password2" placeholder="Repetir Contraseña"
+          [(ngModel)]="passwordConfirmacion" #password2="ngModel" minlength="8" required>
+          <small class="text-danger" *ngIf="password.invalid && password.touched && password.errors.minlength">
+           Ingrese una contraseña mayor de 8 caracteres <br>
+         </small>
+         <small class="text-danger" *ngIf="password2.touched && (password.value != password2.value)">
+          Las contraseñas no coinciden
+        </small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="activo" class="col-lg-3 col-form-label">Activo</label>
+        <div class="col-lg-9">
+          <div class="form-check">
+            <input class="form-check-input position-static" type="checkbox" name="activo" [(ngModel)]="usuario.activo" aria-label="Activo">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="username" class="col-lg-3 col-form-label">
+          Usuario creación
+        </label>
+        <div class="col-lg-9 text-secondary" *ngIf="usuario.usuarioCreacion">
+          {{ usuario.usuarioCreacion.username }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="username" class="col-lg-3 col-form-label">
+          Propietario
+        </label>
+        <div class="col-lg-9 text-secondary" *ngIf="usuario.propietario">
+          {{ usuario.propietario.username }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="username" class="col-lg-3 col-form-label">
+          Último Acceso
+        </label>
+        <div class="col-lg-9 text-secondary">
+          {{ usuario.ultimoAcceso | date:'yyyy-MM-dd H:mm:ss' }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="username" class="col-lg-3 col-form-label">
+          Fecha de creación
+        </label>
+        <div class="col-lg-9 text-secondary">
+          {{ usuario.fechaCreacion | date:'yyyy-MM-dd H:mm:ss' }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="username" class="col-lg-3 col-form-label">
+          Fecha de actualización
+        </label>
+        <div class="col-lg-9 text-secondary">
+          {{ usuario.fechaActualizacion | date:'yyyy-MM-dd H:mm:ss' }}
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-4 col-lg-2">
+    <div class="btn-group-vertical" style="width:100%">
+      <button type="submit" class="btn btn-success" [disabled]="formDetalle.invalid || formDetalle.pristine" (click)="formDetalle.ngSubmit.emit()">
+        <i *ngIf="accion == 1" class="fa fa-plus-circle" aria-hidden="true"></i>
+        <i *ngIf="accion == 2" class="fas fa-edit" aria-hidden="true"></i>
+        <span *ngIf="accion == 1">Guardar</span>
+        <span *ngIf="accion == 2">Actualizar</span>
+      </button>
+      <button type="button" class="btn btn-secondary" routerLink="/usuarios">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Regresar
+      </button>
+      <button *ngIf="accion === 2" type="button" class="btn btn-danger" (click)="eliminar(content)">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Eliminar</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d(false)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Por favor confirme que desea eliminar el registro</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="c(false)">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="c(true)">Aceptar</button>
+  </div>
+</ng-template>

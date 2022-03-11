@@ -1,0 +1,38 @@
+<form #formDetalle="ngForm" (submit)="guardar()">
+<div class="widgets">
+  <div class="row">
+    <div fxLayoutAlign="center" fxFlex>
+      <ba-card cardTitle="Editar perfil" class="modal-buttons" >
+        <div fxFlex="40">
+
+        </div>
+        <div fxLayout="column" class="form-group button-wrapper" fxLayoutAlign="center">
+          <a class="profile-toggle-link" id="user-profile-dd" style="margin:10px;">
+            <img *ngIf="accion == 1" class="avatar" src="{{ ( 'images' | baProfilePicture ) }}">
+            <img *ngIf="accion == 2" class="avatar" style="width:60%;height:60%;" src="data:image/jpeg;base64,{{usuario.avatar}}"/>
+            <a class="fl">
+              <label class="image_input_button btn-outline mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--primary" color="primary">
+                <i class="material-icons">create</i>
+                <input id="file_input_file" (change)="imagen($event)" name="imagen" class="none" type="file" accept="image/*"/>
+              </label>
+            </a>
+          </a>
+            <a style="margin:20px;">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="usuario" name="username" #username="ngModel" [(ngModel)]="usuario.username">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="correo electronico" name="email" #email="ngModel" [(ngModel)]="usuario.email">
+              </mat-form-field>
+            </a>
+        </div>
+        <div fxLayoutAlign="end end">
+          <a>
+            <button mat-fab color="primary">Actualizar</button>
+          </a>
+        </div>
+      </ba-card>
+    </div>
+  </div>
+</div>
+</form>

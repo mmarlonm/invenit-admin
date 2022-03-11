@@ -1,0 +1,31 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.fl{
+  position: relative;
+    left: -25px;
+    top: -10px;
+}
+.float1{
+  position:relative;
+  width:600px;
+  height:600px;
+  bottom:90px;
+  right:510px;
+  margin-top: 1664;
+}
+.fab {
+     width: 20px;
+     height: 20px;
+     line-height: 14px;
+     font-size: 14px;
+
+     &::ng-deep .mat-button-wrapper{
+         line-height: 14px;
+         padding: 0;
+
+          .mat-icon {
+              font-size: 14px;
+              padding-right: 4px;
+              padding-top: 4px;
+          }
+    }
+}

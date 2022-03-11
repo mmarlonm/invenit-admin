@@ -1,0 +1,115 @@
+<ba-card cardTitle="Informacion de tracker" class="modal-buttons">
+  <div class="row">
+    <div class="col-md-8 col-lg-10">
+      <form #formDetalle="ngForm" (ngSubmit)="guardar()">
+        <div class="form-group row">
+          <label for="id" class="col-lg-3 col-form-label">
+            <strong>ID</strong>
+          </label>
+          <div class="col-lg-9">
+            <strong>{{ gsm.id }}</strong>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="input" class="col-lg-3 col-form-label">Numero</label>
+          <div class="col-lg-9">
+            <input type="text" class="form-control" name="numero" required #numero="ngModel"
+             minlength="4" placeholder="Numero" [(ngModel)]="gsm.numero">
+             <small class="text-danger" *ngIf="numero.invalid && numero.touched">
+              Ingrese un numero de tracker válido
+            </small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="descripcion" class="col-lg-3 col-form-label">Operadora</label>
+          <div class="col-lg-9">
+            <input type="text" class="form-control" name="operadora" required #operadora="ngModel"
+             minlength="4" placeholder="Operadora" [(ngModel)]="gsm.operadora">
+             <small class="text-danger" *ngIf="operadora.invalid && operadora.touched">
+              Ingrese un Operadora válido
+            </small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="input" class="col-lg-3 col-form-label">Apn</label>
+          <div class="col-lg-9">
+            <input type="text" class="form-control" name="apn" required #apn="ngModel"
+             minlength="4" placeholder="Apn" [(ngModel)]="gsm.APN">
+             <small class="text-danger" *ngIf="apn.invalid && apn.touched">
+              Ingrese un nombre de Apn válido
+            </small>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="usuarioCreacion" class="col-lg-3 col-form-label">
+            Usuario creación
+          </label>
+          <div class="col-lg-9 text-secondary" *ngIf="gsm.usuarioCreacion">
+            {{ gsm.usuarioCreacion.username }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="propietario" class="col-lg-3 col-form-label">
+            Propietario
+          </label>
+          <div class="col-lg-9 text-secondary" *ngIf="gsm.propietario">
+            {{ gsm.propietario.username }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="fechaCreacion" class="col-lg-3 col-form-label">
+            Fecha de creación
+          </label>
+          <div class="col-lg-9 text-secondary">
+            {{ gsm.createdAt | date:'yyyy-MM-dd H:mm:ss' }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="fechaActualizacion" class="col-lg-3 col-form-label">
+            Fecha de actualización
+          </label>
+          <div class="col-lg-9 text-secondary">
+            {{ gsm.updatedAt | date:'yyyy-MM-dd H:mm:ss' }}
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4 col-lg-2">
+      <div class="btn-group-vertical" style="width:100%">
+        <button type="submit" class="btn btn-primary" (click)="formDetalle.ngSubmit.emit()">
+          <i *ngIf="accion == 1" class="fa fa-plus-circle" aria-hidden="true"></i>
+          <i *ngIf="accion == 2" class="fas fa-edit" aria-hidden="true"></i>
+          <span *ngIf="accion == 1">Guardar</span>
+          <span *ngIf="accion == 2">Actualizar</span>
+        </button>
+        <button type="button" class="btn btn-secondary" routerLink="/pages/gsm">
+          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          Regresar
+        </button>
+        <button *ngIf="accion === 2" type="button" class="btn btn-danger" (click)="eliminar(content)">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr>
+  
+  </ba-card>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Eliminar</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d(false)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Por favor confirme que desea eliminar el registro</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="c(false)">Cancelar</button>
+      <button type="button" class="btn btn-danger" (click)="c(true)">Aceptar</button>
+    </div>
+  </ng-template>
+  

@@ -1,0 +1,25 @@
+<div class="widgets">
+  <div class="row">
+    <div class="col-md-12">
+      <ba-card cardTitle="Lista de usuarios" class="modal-buttons">
+        <a>
+          <button class="btn btn-primary" routerLink="/pages/administracion/usuarios/0">Agregar</button>
+        </a>
+        <ag-grid-angular #agGrid style="height: 225px; width: 100%;" class="ag-theme-material"
+
+                         [gridOptions]="gridOptions"
+                         [columnDefs]="columnDefs"
+                         [rowData]="rowData"
+                         (rowClicked)="onRowClicked($event)"
+                         enableColResize
+                         enableSorting
+                         enableFilter
+                         suppressRowClickSelection
+                         toolPanelSuppressGroups
+                         toolPanelSuppressValues
+                         (gridReady)="onReady($event)">
+        </ag-grid-angular>
+      </ba-card>
+    </div>
+  </div>
+</div>

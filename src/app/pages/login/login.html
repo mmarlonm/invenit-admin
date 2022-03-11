@@ -1,0 +1,37 @@
+<div class="auth-main">
+  <div class="auth-block">
+    <h1 translate>Acceso GEO</h1>
+    <a routerLink="/register" class="auth-link" translate>aun no tiene cuenta?, crear cuenta</a>
+
+    <form >
+      <div class="form-group">
+        <label for="exampleInputEmail1">Usuario</label>
+        <input type="string"  class="form-control" aria-describedby="userHelp"
+        name="username" [(ngModel)]="credenciales.username" placeholder="Nombre de usuario">
+        <small id="userHelp" class="form-text text-muted">Ingrese su nombre de usuario.</small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1"
+        name="password" [(ngModel)]="credenciales.password" placeholder="Contraseña">
+      </div>
+      <button [disabled]="!credenciales.username || !credenciales.password" (click)="login(credenciales)"
+       type="submit" class="btn btn-primary">Ingresar</button>
+
+       <div class="progress mt-2" *ngIf="logueando">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+         role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+      </div>
+    </form>
+
+    <div class="auth-sep"><span><span translate>{{'login.sign_from_app_text'}}</span></span></div>
+
+    <div class="al-share-auth">
+      <ul class="al-share clearfix">
+        <li><i class="socicon socicon-facebook" title="{{'login.share_on_facebook' | translate}}"></i></li>
+        <li><i class="socicon socicon-twitter" title="{{'login.share_on_twitter' | translate}}"></i></li>
+        <li><i class="socicon socicon-google" title="{{'login.share_on_google_plus' | translate}}"></i></li>
+      </ul>
+    </div>
+  </div>
+</div>

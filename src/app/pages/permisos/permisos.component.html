@@ -1,0 +1,114 @@
+<div class="row m-2">
+
+  <div class="form-check col-md-3">
+    <input class="form-check-input position-static" type="checkbox" name="create" [(ngModel)]="permisosBase.canCreate"
+      (ngModelChange)="setPermiso('CREATE')" aria-label="Checkbox">
+    <label for="create" class="col-md-6 col-form-label">Crear</label>
+  </div>
+
+  <div class="col-md-3">
+    <input class="form-check-input position-static" type="checkbox" name="read"
+      [(ngModel)]="permisosBase.canRead" (ngModelChange)="setPermiso('READ')" aria-label="Checkbox">
+    <strong class="text-primary">Lectura</strong>
+    <div *ngIf="permisosBase.read >= 0">
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="permisoLectura" id="permisoLectura1" value="ALL"
+          [(ngModel)]="permisos[permisosBase.read].relation" (ngModelChange)="updatePermiso('READ')">
+        <label class="form-check-label" for="permisoLectura1"
+          [ngClass]="{'text-info': (actualizando == 'READ' && permisos[permisosBase.read].relation == 'ALL')}">
+          Todos
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="permisoLectura" id="permisoLectura2" value="GROUP"
+          [(ngModel)]="permisos[permisosBase.read].relation" (ngModelChange)="updatePermiso('READ')">
+        <label class="form-check-label" for="permisoLectura2"
+          [ngClass]="{'text-info': (actualizando == 'READ' && permisos[permisosBase.read].relation == 'GROUP')}">
+          Grupo
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="permisoLectura" id="permisoLectura3" value="OWNER"
+          [(ngModel)]="permisos[permisosBase.read].relation" (ngModelChange)="updatePermiso('READ')">
+        <label class="form-check-label" for="permisoLectura3"
+          [ngClass]="{'text-info': (actualizando == 'READ' && permisos[permisosBase.read].relation == 'OWNER')}">
+          Propietario
+        </label>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-md-3">
+    <input class="form-check-input position-static" type="checkbox" name="update"
+      [(ngModel)]="permisosBase.canUpdate" (ngModelChange)="setPermiso('UPDATE')" aria-label="Checkbox">
+    <strong class="text-info">Actualizar</strong>
+    <div *ngIf="permisosBase.update >= 0">
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="permisoActualizar" id="permisoActualizar1" value="ALL"
+          [(ngModel)]="permisos[permisosBase.update].relation" (ngModelChange)="updatePermiso('UPDATE')">
+        <label class="form-check-label" for="permisoActualizar1"
+          [ngClass]="{'text-info': (actualizando == 'UPDATE' && permisos[permisosBase.update].relation == 'ALL')}">
+          Todos
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="permisoActualizar" id="permisoActualizar2" value="GROUP"
+          [(ngModel)]="permisos[permisosBase.update].relation" (ngModelChange)="updatePermiso('UPDATE')">
+        <label class="form-check-label" for="permisoActualizar2"
+          [ngClass]="{'text-info': (actualizando == 'UPDATE' && permisos[permisosBase.update].relation == 'GROUP')}">
+          Grupo
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="permisoActualizar" id="permisoActualizar3" value="OWNER"
+          [(ngModel)]="permisos[permisosBase.update].relation" (ngModelChange)="updatePermiso('UPDATE')">
+        <label class="form-check-label" for="permisoActualizar3"
+          [ngClass]="{'text-info': (actualizando == 'UPDATE' && permisos[permisosBase.update].relation == 'OWNER')}">
+          Propietario
+        </label>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-md-3">
+    <input class="form-check-input position-static" type="checkbox" name="delete"
+      [(ngModel)]="permisosBase.canDelete" (ngModelChange)="setPermiso('DELETE')" aria-label="Checkbox">
+    <strong class="text-danger">Eliminar</strong>
+    <div *ngIf="permisosBase.delete >= 0">
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="permisoEliminar" id="permisoEliminar1" value="ALL"
+          [(ngModel)]="permisos[permisosBase.delete].relation" (ngModelChange)="updatePermiso('DELETE')">
+        <label class="form-check-label" for="permisoEliminar1"
+          [ngClass]="{'text-info': (actualizando == 'DELETE' && permisos[permisosBase.delete].relation == 'ALL')}">
+          Todos
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="permisoEliminar" id="permisoEliminar2" value="GROUP"
+          [(ngModel)]="permisos[permisosBase.delete].relation" (ngModelChange)="updatePermiso('DELETE')">
+        <label class="form-check-label" for="permisoEliminar2"
+          [ngClass]="{'text-info': (actualizando == 'DELETE' && permisos[permisosBase.delete].relation == 'GROUP')}">
+          Grupo
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="permisoEliminar" id="permisoEliminar3" value="OWNER"
+          [(ngModel)]="permisos[permisosBase.delete].relation" (ngModelChange)="updatePermiso('DELETE')">
+        <label class="form-check-label" for="permisoEliminar3"
+          [ngClass]="{'text-info': (actualizando == 'DELETE' && permisos[permisosBase.delete].relation == 'OWNER')}">
+          Propietario
+        </label>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

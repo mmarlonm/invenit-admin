@@ -1,0 +1,28 @@
+<div class="col-md-12 col-sm-3">
+  <mat-accordion destroyed="false">
+    <mat-expansion-panel [id]="modelo.id" *ngFor="let modelo of modelos; let i = index" [title]="modelo.name">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{modelo.name}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <permiso [modeloId]="modelo.id" [grupoId]="grupoId"
+        [permisos]="modelo.permissions" (onRead)="onRead($event, i)">
+      </permiso>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <!--ngb-accordion #acc="ngbAccordion" destroyOnHide="false">
+    <ngb-panel [id]="modelo.id" *ngFor="let modelo of modelos; let i = index" [title]="modelo.name">
+      <ng-template ngbPanelContent >
+
+        <permiso [modeloId]="modelo.id" [grupoId]="grupoId"
+          [permisos]="modelo.permissions" (onRead)="onRead($event, i)">
+        </permiso>
+
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion-->
+</div>
+<br>

@@ -1,0 +1,120 @@
+<ba-card cardTitle="Informacion de device" class="modal-buttons">
+  <div class="row">
+    <div class="col-md-8 col-lg-10">
+      <form #formDetalle="ngForm" (ngSubmit)="guardar()">
+        <div class="form-group row">
+          <label for="id" class="col-lg-3 col-form-label">
+            <strong>ID</strong>
+          </label>
+          <div class="col-lg-9">
+            <strong>{{ device.id }}</strong>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="input" class="col-lg-3 col-form-label">Foto</label>
+          <div class="col-lg-3">
+          <a class="profile-toggle-link" id="user-profile-dd">
+            <img *ngIf="accionI == 1" class="avatar" src="{{ ( 'images' | baProfilePicture ) }}">
+            <img *ngIf="accionI == 2"  class="avatar" style="width:60%;height:60%;" src="data:image/jpeg;base64,{{device.fotografia}}"/>
+            <a class="fl">
+              <label class="image_input_button btn-outline mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--primary" color="primary">
+                <i class="material-icons">create</i>
+                <input id="file_input_file" (change)="imagen($event)" name="imagen" class="none form-control" type="file" accept="image/*" required/>
+              </label>
+            </a>
+          </a>
+        </div>
+        </div>
+        <div class="form-group row">
+          <label for="input" class="col-lg-3 col-form-label">Marca</label>
+          <div class="col-lg-9">
+            <input type="text" class="form-control" name="marca" required #marca="ngModel"
+             minlength="4" placeholder="marca" [(ngModel)]="device.marca">
+             <small class="text-danger" *ngIf="marca.invalid && marca.touched">
+              Ingrese un nombre de marca válido
+            </small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="descripcion" class="col-lg-3 col-form-label">Modelo</label>
+          <div class="col-lg-9">
+            <input type="text" class="form-control" name="modelo" required #modelo="ngModel"
+             minlength="4" placeholder="Modelo" [(ngModel)]="device.modelo">
+             <small class="text-danger" *ngIf="modelo.invalid && modelo.touched">
+              Ingrese un modelo válido
+            </small>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="usuarioCreacion" class="col-lg-3 col-form-label">
+            Usuario creación
+          </label>
+          <div class="col-lg-9 text-secondary" *ngIf="device.usuarioCreacion">
+            {{ device.usuarioCreacion.username }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="propietario" class="col-lg-3 col-form-label">
+            Propietario
+          </label>
+          <div class="col-lg-9 text-secondary" *ngIf="device.propietario">
+            {{ device.propietario.username }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="fechaCreacion" class="col-lg-3 col-form-label">
+            Fecha de creación
+          </label>
+          <div class="col-lg-9 text-secondary">
+            {{ device.createdAt | date:'yyyy-MM-dd H:mm:ss' }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="fechaActualizacion" class="col-lg-3 col-form-label">
+            Fecha de actualización
+          </label>
+          <div class="col-lg-9 text-secondary">
+            {{ device.updatedAt | date:'yyyy-MM-dd H:mm:ss' }}
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4 col-lg-2">
+      <div class="btn-group-vertical" style="width:100%">
+        <button type="submit" class="btn btn-primary" (click)="formDetalle.ngSubmit.emit()">
+          <i *ngIf="accion == 1" class="fa fa-plus-circle" aria-hidden="true"></i>
+          <i *ngIf="accion == 2" class="fas fa-edit" aria-hidden="true"></i>
+          <span *ngIf="accion == 1">Guardar</span>
+          <span *ngIf="accion == 2">Actualizar</span>
+        </button>
+        <button type="button" class="btn btn-secondary" routerLink="/pages/device">
+          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          Regresar
+        </button>
+        <button *ngIf="accion === 2" type="button" class="btn btn-danger" (click)="eliminar(content)">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr>
+  
+  </ba-card>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Eliminar</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d(false)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Por favor confirme que desea eliminar el registro</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="c(false)">Cancelar</button>
+      <button type="button" class="btn btn-danger" (click)="c(true)">Aceptar</button>
+    </div>
+  </ng-template>
+  

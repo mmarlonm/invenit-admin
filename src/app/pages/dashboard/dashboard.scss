@@ -1,0 +1,199 @@
+@media screen and (min-width: 1620px) {
+  .row.shift-up {
+    > * {
+      margin-top: -573px;
+    }
+  }
+}
+agm-map {
+  height: 500px;
+}
+
+
+* {
+  font-family: Lato;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: darkblue;
+}
+
+.controls {
+  position: absolute;
+  z-index: 999;
+  top: 180px;
+  right: 90px;
+}
+
+button {
+  font-size: 14px;
+  background: blue;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+button:hover, button:focus {
+  background: red;
+}
+
+.active {
+  background: red;
+}
+
+.hidden {
+  display: none;
+}
+
+span {
+  color: red;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1620px) {
+  .card.feed-panel.large-card {
+    height: 824px;
+  }
+}
+
+.user-stats-card {
+  .card-title {
+    padding: 0 0 15px;
+  }
+}
+
+.blurCalendar {
+  height: 475px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto+Condensed');
+//全体
+body{
+  font-family: "Roboto","Noto Sans JP", sans-serif;
+  color: #444;
+}
+
+//リスト
+ol{
+  padding: 0;
+}
+li{
+  list-style: none;
+}
+
+//リンク
+a{
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: #fff;
+  transition: border-radius .1s linear 0s, letter-spacing .1s linear 0s, opacity .1s linear 0s;
+  &:hover{
+    border-radius: 10px;
+    letter-spacing: .1em;
+    opacity: 0.8;
+  }
+}
+
+//レイアウト
+.section-wrap{
+  padding: 5% 3%;
+}
+
+//コンテンツエリア
+.wrapper{
+  max-width: 960px;
+  width: 100%;
+  background: #fff;
+  margin: 0 auto;
+}
+
+//ヘッダー
+.header{
+  text-align: center;
+  font-size: 3vmin;
+  .title{
+    position: relative;
+    font-weight: normal;
+      span{
+        display: block;
+        font-size: 60%;
+        padding: 1% 0 0;
+    }
+  }
+}
+
+//アコーディオンエリア
+.accordion-area{
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  .accordion-list-wrap{
+    margin-top: 5%;
+    &:first-child{
+      margin-top: 0;
+    }
+    li a{
+      padding: 5% 0;
+    }
+    .accordion-trigger{
+      color: #fff;
+      font-weight: bold;
+      padding: 5% 0;
+      cursor: pointer;
+      transition: border-radius .1s linear 0s, letter-spacing .1s linear 0s;
+      &:hover{
+        border-radius: 10px;
+        letter-spacing: .1em;
+      }
+      &.blue{
+        background: #a2bbe1;
+      }
+      &.green{
+        background: #9bcfa4;
+      }
+      &.yellow{
+        background: #ffd35b;
+      }
+    }
+    .accordion-list-inner{
+      ol{
+        &.blue{
+          li:nth-child(odd) a{
+            background: #ccdcec;
+          }
+          li:nth-child(even) a{
+            background: #a2bbe1;
+          }
+        }
+        &.green{
+          li:nth-child(odd) a{
+            background: #c1e5c5;
+          }
+          li:nth-child(even) a{
+            background: #9bcfa4;
+          }
+        }
+        &.yellow{
+          li:nth-child(odd) a{
+            background: #ffebb6;
+          }
+          li:nth-child(even) a{
+            background: #ffd35b;
+          }
+        }
+      }
+    }
+  }
+}
+//フッター
+.footer{
+  text-align: center;
+}

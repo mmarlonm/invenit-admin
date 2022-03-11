@@ -1,0 +1,47 @@
+.avatar {
+  border-radius: 20%;
+}
+
+.fl{
+  position: relative;
+    left: -25px;
+    top: -10px;
+}
+.float1{
+  position:relative;
+  width:600px;
+  height:600px;
+  bottom:90px;
+  right:510px;
+  margin-top: 1664;
+}
+.file_input_div {
+  margin: auto;
+  width: 0px;
+  height: 40px;
+}
+
+.file_input {
+  float: left;
+}
+
+#file_input_text_div {
+  width: 200px;
+  margin-top: -8px;
+  margin-left: 5px;
+}
+
+.none {
+  display: none;
+}
+.example-chip-list {
+  width: 100%;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
