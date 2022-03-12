@@ -1,11 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MouseEvent } from '@agm/core';
 import { DashboardService } from './dashboard.service'
-import { GeoPoint } from './../types'
-import { DecimalPipe } from '@angular/common';
-import { TravelMarker, TravelMarkerOptions, TravelData, TravelEvents, EventType } from 'travel-marker';
-import { groupBy } from 'rxjs/operators';
-import _ = require('lodash');
+import { TravelMarker } from 'travel-marker';
+
 
 declare var google: any;
 

@@ -17,7 +17,7 @@ export class DeviceComponent implements OnInit {
   @Input() filtro: any;
 
 
-  private gridOptions: GridOptions;
+  gridOptions: GridOptions;
   public rowData: any[];
   public rowData1: any[];
   public columnDefs: any[];
@@ -53,7 +53,7 @@ export class DeviceComponent implements OnInit {
 
   }
 
-  private onReady(params) {
+  onReady(params) {
     this.api = params.api;
     this.columnApi = params.columnApi;
   }

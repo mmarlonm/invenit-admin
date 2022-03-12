@@ -15,7 +15,7 @@ import { ListOptionsComponent } from '../../../list-options/list-options.compone
 })
 export class Grupos implements OnInit {
 
-  //private gridOptions: GridOptions;
+  public gridOptions: GridOptions;
   public rowData: any[];
   public rowData1: any[];
   public columnDefs: any[];
@@ -55,7 +55,7 @@ export class Grupos implements OnInit {
     });
   }
 
-  private onReady(params) {
+  onReady(params) {
     this.api = params.api;
     this.columnApi = params.columnApi;
   }

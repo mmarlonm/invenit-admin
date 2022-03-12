@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./list-options.component.css']
 })
 export class ListOptionsComponent {
-  private params: any;
-  private editLink: string;
+  public params: any;
+  public editLink: string;
   constructor() { }
 
   agInit(params: any): void {

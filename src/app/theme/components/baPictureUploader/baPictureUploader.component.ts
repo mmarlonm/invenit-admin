@@ -11,7 +11,7 @@ export class BaPictureUploader {
   @Input() defaultPicture:string = '';
   @Input() picture:string = '';
 
-  //@Input() uploaderOptions:UploaderOptions = { url: '' };
+  @Input() uploaderOptions:UploaderOptions;
   @Input() canDelete:boolean = true;
 
   @Output() onUpload = new EventEmitter<any>();
@@ -24,7 +24,7 @@ export class BaPictureUploader {
   constructor(private renderer: Renderer) {
   }
 
-  /*beforeUpload(uploadingFile): void {
+  beforeUpload(uploadingFile): void {
     let files = this._fileUpload.nativeElement.files;
 
     if (files.length) {
@@ -37,7 +37,7 @@ export class BaPictureUploader {
         this.uploadInProgress = true;
       }
     }
-  }*/
+  }
 
   bringFileSelector():boolean {
     this.renderer.invokeElementMethod(this._fileUpload.nativeElement, 'click');
@@ -70,7 +70,7 @@ export class BaPictureUploader {
     this.onUploadCompleted.emit(data);
   }
 
-/*  _canUploadOnServer():boolean {
+_canUploadOnServer():boolean {
     return !!this.uploaderOptions['url'];
-  }*/
+  }
 }

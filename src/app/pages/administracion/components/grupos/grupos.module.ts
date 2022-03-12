@@ -10,7 +10,7 @@ import { Grupos } from './grupos.component';
 
 @NgModule({
   imports: [
-    CommonModule,,
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -22,7 +22,7 @@ import { Grupos } from './grupos.component';
     MatIconModule
   ],
   declarations: [
-    Grupos
+    //Grupos
   ]
 })
 export class GruposModule {}

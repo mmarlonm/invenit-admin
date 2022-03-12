@@ -9,8 +9,8 @@ import * as moment from 'moment';
 })
 export class TimestampParserComponent {
 
-  private params: any;
-  private dateFormat: string = 'YYYY-MM-DD H:mm:ss';
+  public params: any;
+  public dateFormat: string = 'YYYY-MM-DD H:mm:ss';
 
   agInit(params: any): void {
     let fecha = moment(params.value);

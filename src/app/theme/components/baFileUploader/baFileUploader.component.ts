@@ -6,7 +6,7 @@ import { UploaderOptions } from 'ngx-uploader';
   templateUrl: './baFileUploader.html',
 })
 export class BaFileUploader {
-//  @Input() fileUploaderOptions: UploaderOptions = { url: '' };
+  @Input() fileUploaderOptions: UploaderOptions;
   @Output() onFileUpload = new EventEmitter<any>();
   @Output() onFileUploadCompleted = new EventEmitter<any>();
   @Input() defaultValue: string = '';
@@ -23,7 +23,7 @@ export class BaFileUploader {
     return false;
   }
 
-  /*beforeFileUpload(uploadingFile): void {
+  beforeFileUpload(uploadingFile): void {
     let files = this._fileUpload.nativeElement.files;
     if (files.length) {
       const file = files[0];
@@ -34,7 +34,7 @@ export class BaFileUploader {
         this.uploadFileInProgress = true;
       }
     }
-  }*/
+  }
 
   _onChangeFileSelect(file) {
     this._inputText.nativeElement.value = file.name
@@ -53,7 +53,7 @@ export class BaFileUploader {
     this.onFileUploadCompleted.emit(data);
   }
 
-  /*_canFleUploadOnServer(): boolean {
+  _canFleUploadOnServer(): boolean {
     return !!this.fileUploaderOptions['url'];
-  }*/
+  }
 }

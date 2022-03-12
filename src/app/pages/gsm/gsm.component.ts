@@ -16,7 +16,7 @@ export class GsmComponent implements OnInit {
   @Input() filtro: any;
 
 
-  private gridOptions: GridOptions;
+  public gridOptions: GridOptions;
   public rowData: any[];
   public rowData1: any[];
   public columnDefs: any[];
@@ -51,7 +51,7 @@ export class GsmComponent implements OnInit {
 
   }
 
-  private onReady(params) {
+  onReady(params) {
     this.api = params.api;
     this.columnApi = params.columnApi;
   }

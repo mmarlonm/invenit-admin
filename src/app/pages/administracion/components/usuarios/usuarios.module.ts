@@ -16,7 +16,7 @@ import { Usuarios } from './usuarios.component';
     FormsModule
   ],
   declarations: [
-    Usuarios
+    //Usuarios
   ]
 })
 export class UsuariosModule {}
