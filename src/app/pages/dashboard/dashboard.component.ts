@@ -45,6 +45,17 @@ export class Dashboard implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getData()
+    setInterval(()=>{
+      this.getData()
+    },10000)
+
+    this.geoService.listDevice().subscribe(Respuesta => {
+      this.device = Respuesta;
+    });
+  }
+
+  getData(){
     let opciones = { populate: 'group,dispositivo', ...this.filtro };
     this.geoService.list(opciones)
       .subscribe(registros => {
@@ -66,11 +77,6 @@ export class Dashboard implements OnInit {
         }*/
 
       });
-
-
-    this.geoService.listDevice().subscribe(Respuesta => {
-      this.device = Respuesta;
-    });
   }
 
   groupBy(array, f) {
